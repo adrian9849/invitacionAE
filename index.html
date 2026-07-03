@@ -54,6 +54,7 @@
     --color-lana:         #F3E9D8; /* crema lana cruda, fondo principal */
     --color-lana-osc:     #E7D8BE; /* crema un poco más oscuro, paneles */
     --color-tinta:        #241C15; /* casi negro, texto principal */
+    --color-centro-flor:  #6B3F1D; /* café rústico, centro de los girasoles */
 
     /* --- Tipografías --- */
     --fuente-display: 'Playfair Display', serif;   /* nombres, títulos grandes */
@@ -105,6 +106,37 @@
     font-size: clamp(28px, 4vw, 42px);
     margin: 0 0 8px;
     color: var(--color-cielo-noche);
+  }
+
+  /* ==========================================================================
+     GIRASOLES — ornamento floral que refuerza la temática de boda rústica
+     sin perder el aire andino (se usa junto a los motivos de sol/chakana
+     ya existentes). Es un solo SVG reutilizado en varias secciones.
+     ========================================================================== */
+  .girasol{
+    width: 46px;
+    height: 46px;
+    display: block;
+    margin: 0 auto 16px;
+  }
+  .girasol--mini{
+    width: 26px;
+    height: 26px;
+    margin: 0 10px;
+  }
+  .girasol--esquina{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 3;
+    opacity: 0.92;
+  }
+  .girasol--esquina-izq{ left: 18px; bottom: 18px; }
+  .girasol--esquina-der{ right: 18px; bottom: 18px; }
+  @media (max-width: 600px){
+    .girasol--esquina{ width: 40px; height: 40px; }
+    .girasol--esquina-izq{ left: 10px; bottom: 10px; }
+    .girasol--esquina-der{ right: 10px; bottom: 10px; }
   }
 
   /* ==========================================================================
@@ -582,7 +614,8 @@
     text-align: center;
     padding: 56px 24px 40px;
   }
-  footer .chakana{ width: 40px; height: 40px; margin: 0 auto 18px; opacity: 0.85; }
+  footer .chakana{ width: 40px; height: 40px; opacity: 0.85; }
+  footer .footer__ornamento{ display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
   footer p{ font-family: var(--fuente-display); font-size: 20px; margin: 0; }
   footer span{
     display: block;
@@ -601,6 +634,32 @@
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
   .reveal.visible{ opacity: 1; transform: translateY(0); }
+
+  /* ==========================================================================
+     AJUSTES GENERALES PARA CELULAR
+     Reduce espacios y tamaños de letra en pantallas angostas para que la
+     invitación se vea cómoda de leer sin perder el diseño ni el orden de
+     las secciones (que ya se acomodan en una sola columna gracias a las
+     otras media queries de arriba).
+     ========================================================================== */
+  @media (max-width: 600px){
+    body{ font-size: 17px; }
+    section{ padding: 64px 0; }
+    .contenedor{ padding: 0 18px; }
+    .historia__texto p{ font-size: 19px; }
+    .timeline__contenido p{ font-size: 17px; }
+    .reloj{ gap: 12px; }
+    .reloj__unidad{ min-width: 78px; padding: 16px 10px; }
+    .reloj__numero{ font-size: 34px; }
+    .galeria__grid{ gap: 10px; }
+    .rsvp form{ gap: 14px; }
+  }
+
+  /* Pantallas muy angostas (celulares pequeños) */
+  @media (max-width: 380px){
+    .hero__nombres{ font-size: 44px; }
+    .reloj__unidad{ min-width: 70px; }
+  }
 
 </style>
 </head>
@@ -661,6 +720,34 @@
     </div>
 
     <div class="hero__scroll" aria-hidden="true">↓ Desliza</div>
+
+    <!-- Girasoles decorativos — refuerzan la temática de boda rústica -->
+    <svg class="girasol girasol--esquina girasol--esquina-izq" viewBox="0 0 60 60" aria-hidden="true">
+      <g fill="var(--color-oro)">
+        <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+      </g>
+      <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+    </svg>
+    <svg class="girasol girasol--esquina girasol--esquina-der" viewBox="0 0 60 60" aria-hidden="true">
+      <g fill="var(--color-oro)">
+        <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+        <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+      </g>
+      <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+    </svg>
   </header>
 
   <div class="cinta" role="presentation"></div>
@@ -672,6 +759,19 @@
   <section class="historia">
     <div class="contenedor">
       <div class="seccion-centrada reveal">
+        <svg class="girasol" viewBox="0 0 60 60" aria-hidden="true">
+          <g fill="var(--color-oro)">
+            <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+          </g>
+          <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+        </svg>
         <p class="eyebrow">Nuestra historia</p>
         <h2 class="titulo-seccion">De dos caminos, uno solo</h2>
       </div>
@@ -734,6 +834,19 @@
   <section class="itinerario">
     <div class="contenedor">
       <div class="seccion-centrada reveal">
+        <svg class="girasol" viewBox="0 0 60 60" aria-hidden="true">
+          <g fill="var(--color-oro)">
+            <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+          </g>
+          <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+        </svg>
         <p class="eyebrow">El gran día</p>
         <h2 class="titulo-seccion">Itinerario</h2>
       </div>
@@ -786,6 +899,19 @@
   <section class="ubicacion">
     <div class="contenedor">
       <div class="seccion-centrada reveal">
+        <svg class="girasol" viewBox="0 0 60 60" aria-hidden="true">
+          <g fill="var(--color-oro)">
+            <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+          </g>
+          <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+        </svg>
         <p class="eyebrow">Cómo llegar</p>
         <h2 class="titulo-seccion">Ubicaciones</h2>
       </div>
@@ -842,6 +968,19 @@
   <section class="galeria">
     <div class="contenedor">
       <div class="seccion-centrada reveal">
+        <svg class="girasol" viewBox="0 0 60 60" aria-hidden="true">
+          <g fill="var(--color-oro)">
+            <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+            <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+          </g>
+          <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+        </svg>
         <p class="eyebrow">Momentos</p>
         <h2 class="titulo-seccion">Galería</h2>
       </div>
@@ -868,6 +1007,19 @@
        ======================================================================== -->
   <section class="rsvp">
     <div class="contenedor seccion-centrada reveal">
+      <svg class="girasol" viewBox="0 0 60 60" aria-hidden="true">
+        <g fill="var(--color-oro)">
+          <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+        </g>
+        <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+      </svg>
       <p class="eyebrow">Confirma tu asistencia</p>
       <h2 class="titulo-seccion">RSVP antes del 1 de octubre</h2>
 
@@ -900,16 +1052,44 @@
        FOOTER
        ======================================================================== -->
   <footer>
-    <svg class="chakana" viewBox="0 0 100 100" aria-hidden="true">
-      <g fill="none" stroke="#D9A441" stroke-width="4">
-        <rect x="40" y="10" width="20" height="20"/>
-        <rect x="40" y="70" width="20" height="20"/>
-        <rect x="10" y="40" width="20" height="20"/>
-        <rect x="70" y="40" width="20" height="20"/>
-        <rect x="40" y="40" width="20" height="20"/>
-        <circle cx="50" cy="50" r="6"/>
-      </g>
-    </svg>
+    <div class="footer__ornamento">
+      <svg class="girasol girasol--mini" viewBox="0 0 60 60" aria-hidden="true">
+        <g fill="var(--color-oro)">
+          <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+        </g>
+        <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+      </svg>
+      <svg class="chakana" viewBox="0 0 100 100" aria-hidden="true">
+        <g fill="none" stroke="#D9A441" stroke-width="4">
+          <rect x="40" y="10" width="20" height="20"/>
+          <rect x="40" y="70" width="20" height="20"/>
+          <rect x="10" y="40" width="20" height="20"/>
+          <rect x="70" y="40" width="20" height="20"/>
+          <rect x="40" y="40" width="20" height="20"/>
+          <circle cx="50" cy="50" r="6"/>
+        </g>
+      </svg>
+      <svg class="girasol girasol--mini" viewBox="0 0 60 60" aria-hidden="true">
+        <g fill="var(--color-oro)">
+          <ellipse cx="30" cy="9" rx="6.5" ry="13"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(45 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(90 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(135 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(180 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(225 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(270 30 30)"/>
+          <ellipse cx="30" cy="9" rx="6.5" ry="13" transform="rotate(315 30 30)"/>
+        </g>
+        <circle cx="30" cy="30" r="10" fill="var(--color-centro-flor)"/>
+      </svg>
+    </div>
     <p>Con cariño, Estefania &amp; Adrian</p>
     <span>Los esperamos en el corazón de los Andes</span>
   </footer>
@@ -984,11 +1164,10 @@
        archivo subido a GitHub no coincide exactamente con este (revisa
        mayúsculas/minúsculas también).
 
-       Nota sobre autoplay: los navegadores bloquean el sonido automático
-       hasta que el visitante interactúa con la página (clic, scroll o
-       toque). El script de abajo ya maneja esto: intenta reproducir de
-       una vez, y si el navegador lo bloquea, arranca en cuanto detecta
-       la primera interacción.
+       Sobre cómo arranca: la música empieza a sonar apenas el visitante
+       hace clic o toca cualquier parte de la pantalla por primera vez
+       (los navegadores no permiten sonido automático sin esa acción).
+       El botón flotante permite pausarla o reanudarla después.
        ======================================================================== -->
   <audio id="musica-fondo" loop preload="auto">
     <source src="audio/musica_teamare.mp3" type="audio/mpeg">
@@ -1016,6 +1195,13 @@
        CONTROL DE MÚSICA DE FONDO
        No necesitas tocar este código para que funcione; solo cambia el
        archivo de audio como se indica en el comentario de arriba.
+
+       Cómo funciona: la música NO intenta sonar sola al cargar la
+       página (los navegadores bloquean eso siempre y solo genera
+       confusión). En su lugar, apenas el visitante hace clic o toca
+       CUALQUIER parte de la pantalla por primera vez, la música arranca
+       automáticamente. Después de eso, el botón flotante sirve para
+       pausarla o reanudarla cuando quieran.
        ======================================================================== */
     const musica = document.getElementById("musica-fondo");
     const botonMusica = document.getElementById("boton-musica");
@@ -1035,30 +1221,25 @@
       botonMusica.setAttribute("aria-label", "Activar música de fondo");
     }
 
-    // Intento de autoplay al cargar la página
-    function intentarAutoplay(){
-      const intento = musica.play();
-      if (intento !== undefined){
-        intento
-          .then(() => { marcarComoSonando(); })
-          .catch(() => {
-            // El navegador bloqueó el autoplay: esperamos la primera
-            // interacción del visitante (clic, toque o scroll) para
-            // arrancar la música ahí mismo.
-            marcarComoSilenciado();
-            const eventos = ["click", "touchstart", "scroll", "keydown"];
-            function iniciarConInteraccion(){
-              musica.play().then(marcarComoSonando).catch(() => {});
-              eventos.forEach((ev) => document.removeEventListener(ev, iniciarConInteraccion));
-            }
-            eventos.forEach((ev) => document.addEventListener(ev, iniciarConInteraccion, { once: true, passive: true }));
-          });
-      }
+    // Arranca la música apenas se detecta el primer clic o toque en
+    // cualquier parte de la página (fuera del botón, que tiene su propio
+    // manejo más abajo para poder pausar/reanudar después).
+    let musicaYaIniciada = false;
+    function iniciarConPrimerToque(){
+      if (musicaYaIniciada) return;
+      musicaYaIniciada = true;
+      musica.play().then(marcarComoSonando).catch(() => marcarComoSilenciado());
     }
-    intentarAutoplay();
+    ["click", "touchstart", "keydown"].forEach((ev) => {
+      document.addEventListener(ev, iniciarConPrimerToque, { passive: true });
+    });
 
-    // Botón: pausa o reanuda la música manualmente
-    botonMusica.addEventListener("click", () => {
+    // Botón: pausa o reanuda la música manualmente. Se detiene la
+    // propagación para que este clic no dispare dos veces la función de
+    // arriba en el mismo toque.
+    botonMusica.addEventListener("click", (evento) => {
+      evento.stopPropagation();
+      musicaYaIniciada = true;
       if (musica.paused){
         musica.play().then(marcarComoSonando).catch(() => {});
       } else {
