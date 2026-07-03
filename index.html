@@ -536,6 +536,45 @@
     outline-offset: 2px;
   }
 
+  /* ==========================================================================
+     CONTROL DE MÚSICA — botón flotante circular, con el mismo estilo del
+     sol (Inti) del hero. Queda fijo en pantalla para poder silenciar o
+     reanudar la música en cualquier momento.
+     ========================================================================== */
+  .control-musica{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 50;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--color-oro);
+    background: var(--color-cielo-noche);
+    color: var(--color-oro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .control-musica:hover{ transform: scale(1.08); background: var(--color-cochinilla); }
+  .control-musica svg{ width: 24px; height: 24px; }
+
+  /* Icono de "sonando": gira despacio mientras la música está activa */
+  .control-musica.reproduciendo svg{ animation: girar 8s linear infinite; }
+
+  /* Muestra un ícono u otro según el estado (ver los dos <svg> en el botón) */
+  .control-musica .icono-pausado{ display: none; }
+  .control-musica.silenciado .icono-sonando{ display: none; }
+  .control-musica.silenciado .icono-pausado{ display: block; }
+
+  @media (max-width: 520px){
+    .control-musica{ right: 14px; bottom: 14px; width: 48px; height: 48px; }
+    .control-musica svg{ width: 20px; height: 20px; }
+  }
+
   /* --- Footer --- */
   footer{
     background: var(--color-cielo-noche);
@@ -614,11 +653,11 @@
     </div>
 
     <div class="hero__contenido">
-      <p class="hero__eyebrow">Nos casamos · Lima, Perú</p>
+      <p class="hero__eyebrow">Nos casamos · Andes, Perú</p>
       <!-- PERSONALIZAR: nombres de la pareja -->
       <h1 class="hero__nombres">Estefania<span class="hero__amp">&amp;</span>Adrian</h1>
       <!-- PERSONALIZAR: fecha corta visible (la real para el conteo va en el script) -->
-      <p class="hero__fecha">11 de Octubre, 2026 — Carabayllo</p>
+      <p class="hero__fecha">11 de octubre, 2026 — Local Comunal La Flor, Carabayllo</p>
     </div>
 
     <div class="hero__scroll" aria-hidden="true">↓ Desliza</div>
@@ -650,7 +689,7 @@
           <div class="foto-marcador">
             Aquí va tu foto<br>(reemplaza este bloque por una imagen tuya)
           </div>
-          <!-- <img class="foto-real" src="images/pareja-1.jpg" alt="Ana y Diego"> -->
+          <!-- <img class="foto-real" src="images/pareja-1.jpg" alt="Estefania y Adrian"> -->
         </div>
         <div class="historia__texto reveal">
           <p>
@@ -707,7 +746,7 @@
           <div class="timeline__contenido">
             <span class="timeline__hora">4:00 PM</span>
             <h3>Ceremonia</h3>
-            <p>Local comunal de la flor. Te pedimos llegar 20 minutos antes.</p>
+            <p>Local Comunal La Flor, Carabayllo. Te pedimos llegar 20 minutos antes.</p>
           </div>
         </div>
 
@@ -718,7 +757,7 @@
           <div class="timeline__contenido">
             <span class="timeline__hora">6:00 PM</span>
             <h3>Brindis al atardecer</h3>
-            <p>Cóctel de bienvenida.</p>
+            <p>Cóctel de bienvenida con vista a la cordillera mientras cae el sol.</p>
           </div>
         </div>
 
@@ -729,7 +768,7 @@
           <div class="timeline__contenido">
             <span class="timeline__hora">8:00 PM</span>
             <h3>Cena y celebración</h3>
-            <p>Cena, música y baile hasta tarde.</p>
+            <p>Cena con sabores andinos, música en vivo y baile hasta tarde.</p>
           </div>
         </div>
       </div>
@@ -754,15 +793,17 @@
       <div class="ubicacion__grid">
         <div class="tarjeta-lugar reveal">
           <h3>Ceremonia</h3>
-          <p>Local comunal</p>
-          <p>La flor, Carabayllo</p>
+          <p>Local Comunal La Flor</p>
+          <p>Carabayllo, Lima, Perú</p>
           <!-- PERSONALIZAR: MAPA -->
           <a class="mapa-link" href="#" target="_blank" rel="noopener">Ver en Google Maps →</a>
         </div>
         <div class="tarjeta-lugar reveal">
           <h3>Recepción</h3>
-          <p>Local comunal</p>
-          <p>Carabayllo, Lima</p>
+          <!-- Si la recepción es en un lugar distinto a la ceremonia,
+               cambia estas dos líneas por esa dirección -->
+          <p>Local Comunal La Flor</p>
+          <p>Carabayllo, Lima, Perú</p>
           <!-- PERSONALIZAR: MAPA -->
           <a class="mapa-link" href="#" target="_blank" rel="noopener">Ver en Google Maps →</a>
         </div>
@@ -870,7 +911,7 @@
       </g>
     </svg>
     <p>Con cariño, Estefania &amp; Adrian</p>
-    <span>Los esperamos con mucho entusiasmo y alegria</span>
+    <span>Los esperamos en el corazón de los Andes</span>
   </footer>
 
   <script>
@@ -881,7 +922,7 @@
        formato "AAAA-MM-DDTHH:MM:SS". Ejemplo para el 14 de noviembre de
        2026 a las 4:00 pm:  "2026-11-14T16:00:00"
        ======================================================================== */
-    const fechaBoda = new Date("2026-11-14T16:00:00").getTime();
+    const fechaBoda = new Date("2026-10-11T16:00:00").getTime();
 
     function actualizarReloj(){
       const ahora = new Date().getTime();
@@ -930,6 +971,101 @@
     }, { threshold: 0.15 });
 
     elementosReveal.forEach((el) => observador.observe(el));
+  </script>
+
+  <!-- ========================================================================
+       MÚSICA DE FONDO
+       PERSONALIZAR: MÚSICA
+
+       El audio apunta a tu archivo local dentro de la carpeta audio/ de
+       este mismo proyecto: "musica_teamare.mp3"
+
+       Si el audio no suena, la causa más común es que el nombre del
+       archivo subido a GitHub no coincide exactamente con este (revisa
+       mayúsculas/minúsculas también).
+
+       Nota sobre autoplay: los navegadores bloquean el sonido automático
+       hasta que el visitante interactúa con la página (clic, scroll o
+       toque). El script de abajo ya maneja esto: intenta reproducir de
+       una vez, y si el navegador lo bloquea, arranca en cuanto detecta
+       la primera interacción.
+       ======================================================================== -->
+  <audio id="musica-fondo" loop preload="auto">
+    <source src="audio/musica_teamare.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <button id="boton-musica" class="control-musica" type="button" aria-pressed="false" aria-label="Silenciar música de fondo">
+    <!-- Ícono "sonando" (visible cuando la música está activa) -->
+    <svg class="icono-sonando" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V6l10-2v12"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="16" cy="16" r="3"/>
+    </svg>
+    <!-- Ícono "silenciado" (visible cuando la música está pausada/silenciada) -->
+    <svg class="icono-pausado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V6l10-2v12"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="16" cy="16" r="3"/>
+      <line x1="2" y1="2" x2="22" y2="22"/>
+    </svg>
+  </button>
+
+  <script>
+    /* ========================================================================
+       CONTROL DE MÚSICA DE FONDO
+       No necesitas tocar este código para que funcione; solo cambia el
+       archivo de audio como se indica en el comentario de arriba.
+       ======================================================================== */
+    const musica = document.getElementById("musica-fondo");
+    const botonMusica = document.getElementById("boton-musica");
+    musica.volume = 0.5; // volumen inicial (0 a 1) — cámbialo si lo quieres más alto o bajo
+
+    function marcarComoSonando(){
+      botonMusica.classList.add("reproduciendo");
+      botonMusica.classList.remove("silenciado");
+      botonMusica.setAttribute("aria-pressed", "false");
+      botonMusica.setAttribute("aria-label", "Silenciar música de fondo");
+    }
+
+    function marcarComoSilenciado(){
+      botonMusica.classList.remove("reproduciendo");
+      botonMusica.classList.add("silenciado");
+      botonMusica.setAttribute("aria-pressed", "true");
+      botonMusica.setAttribute("aria-label", "Activar música de fondo");
+    }
+
+    // Intento de autoplay al cargar la página
+    function intentarAutoplay(){
+      const intento = musica.play();
+      if (intento !== undefined){
+        intento
+          .then(() => { marcarComoSonando(); })
+          .catch(() => {
+            // El navegador bloqueó el autoplay: esperamos la primera
+            // interacción del visitante (clic, toque o scroll) para
+            // arrancar la música ahí mismo.
+            marcarComoSilenciado();
+            const eventos = ["click", "touchstart", "scroll", "keydown"];
+            function iniciarConInteraccion(){
+              musica.play().then(marcarComoSonando).catch(() => {});
+              eventos.forEach((ev) => document.removeEventListener(ev, iniciarConInteraccion));
+            }
+            eventos.forEach((ev) => document.addEventListener(ev, iniciarConInteraccion, { once: true, passive: true }));
+          });
+      }
+    }
+    intentarAutoplay();
+
+    // Botón: pausa o reanuda la música manualmente
+    botonMusica.addEventListener("click", () => {
+      if (musica.paused){
+        musica.play().then(marcarComoSonando).catch(() => {});
+      } else {
+        musica.pause();
+        marcarComoSilenciado();
+      }
+    });
   </script>
 
 </body>
